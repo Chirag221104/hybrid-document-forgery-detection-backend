@@ -14,24 +14,15 @@ from analyzers.text_analyzer import TextAnalyzer
 from analyzers.signature_analyzer import SignatureAnalyzer
 
 app = FastAPI()
-# CORS Configuration
+
+# ✅ CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ✅ Allow all domains
+    allow_origins=["*"],   # allow all domains
     allow_credentials=True,
-    allow_methods=["*"],  # ✅ Allow all HTTP methods
-    allow_headers=["*"],  # ✅ Allow all headers
+    allow_methods=["*"],   # allow all methods
+    allow_headers=["*"],   # allow all headers
 )
-
-
-# # CORS Configuration
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
 
 @app.get("/")
 @app.get("/api")
@@ -137,10 +128,7 @@ async def extract_metadata(file_path: str, file_info: dict, pdf_analyzer, docx_a
             "modifiedDate": None,
         }
 
-# ✅ CRITICAL: Vercel serverless handler
-handler = app
-
-# ✅ ADD THIS BLOCK: For running locally with 'python index.py'
+# ✅ Run locally (python index.py)
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("index:app", host="0.0.0.0", port=8000, reload=True)
