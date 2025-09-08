@@ -2,8 +2,7 @@ fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
 PyPDF2==3.0.1
-pikepdf==8.15.1
+pikepdf==8.15.1  # Remove if PyPDF2 suffices for PDF handling
 python-docx==1.1.0
-Pillow==10.1.0
-PyMuPDF==1.23.8
-
+PyMuPDF==1.23.8  # Critical for text extraction; keep but test lighter alternatives
+cryptography==43.0.3  # Or latest version; test compatibility
